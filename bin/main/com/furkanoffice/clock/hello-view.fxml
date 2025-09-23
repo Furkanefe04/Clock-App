@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox  alignment="CENTER" minHeight="600" minWidth="1000"  styleClass="main" stylesheets="@generalStyle.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.furkanoffice.clock.HelloController">
+     <HBox styleClass="title-bar" alignment="CENTER_LEFT">
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="title-section">
+            <Label text="⏰" styleClass="app-title"/>
+            <Label text="Clock App" styleClass="app-title"/>
+        </HBox>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <HBox spacing="0" alignment="CENTER_RIGHT" styleClass="window-controls">
+            <Button text="−" onAction="#minimizeWindow" styleClass="window-button, minimize-button"/>
+            <Button text="✕" onAction="#closeWindow" styleClass="window-button, close-button"/>
+        </HBox>
+    </HBox>
+    <TabPane fx:id="tabPane" nodeOrientation="LEFT_TO_RIGHT" styleClass="tab-pane" tabClosingPolicy="UNAVAILABLE">
+        
+        <Tab styleClass="tab" text="⏱ Kronometre">
+            <VBox alignment="CENTER" spacing="20" styleClass="tab-content">
+                <HBox alignment="CENTER" spacing="0">
+                    <StackPane>
+                        <Label fx:id="timeLabelHour" styleClass="choronometreLabel" text="00" />
+                    </StackPane>
+                    <Label styleClass="choronometreLabel" text=":" />
+                    <StackPane>
+                        <Label fx:id="timeLabelMinute" styleClass="choronometreLabel" text="00" />
+                    </StackPane>
+                    <Label styleClass="choronometreLabel" text=":" />
+                    <StackPane>
+                        <Label fx:id="timeLabelSecond" styleClass="choronometreLabel" text="00" />
+                    </StackPane>
+                    <Label styleClass="choronometreLabel" text=":" />
+                    <StackPane>
+                        <Label fx:id="timeLabelMS" styleClass="choronometreLabel" text="00" />
+                    </StackPane>
+                </HBox>
+
+                <HBox alignment="CENTER" spacing="10">
+                    <Button onAction="#startChoronometre" styleClass="button" text="Başlat/Tur" />
+                    <Button onAction="#stopTimer" styleClass="button" text="Durdur" />
+                    <Button onAction="#resetTimer" styleClass="button" text="Sıfırla" />
+                </HBox>
+                
+                <ListView fx:id="turlar" maxHeight="200" maxWidth="400" prefHeight="200" prefWidth="400" />
+                
+                <Button fx:id="kaydet" maxWidth="400" onAction="#kaydet" styleClass="button" text="Kaydet" />
+                
+                <padding>
+                    <Insets bottom="20" left="20" right="20" top="20" />
+                </padding>
+            </VBox>
+        </Tab>
+        
+        <Tab styleClass="tab" text="🕐 Saat">
+            <VBox alignment="CENTER" spacing="20" styleClass="tab-content">
+                <StackPane>
+                    <Label fx:id="clockLabel" alignment="CENTER" styleClass="clockLabel" text="12:50:40" />
+                </StackPane>
+                
+                <StackPane>
+                    <Label fx:id="dateLabel" alignment="CENTER" styleClass="dateLabel" text="20.09.2025 Cumartesi" />
+                </StackPane>
+                
+                <StackPane>
+                    <Label fx:id="saatdilimleri" alignment="CENTER" styleClass="choronometreLabel" text="Dünya saatleri" />
+                </StackPane>
+                
+                <ListView fx:id="saatler" maxHeight="200" maxWidth="400" prefHeight="200" prefWidth="400" />
+                
+                <padding>
+                    <Insets bottom="40" left="20" right="20" top="40" />
+                </padding>
+            </VBox>
+        </Tab>
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+        
+    </TabPane>
+    
+    <StackPane styleClass="message-area">
+        <Label fx:id="message" alignment="CENTER" styleClass="toast" text="" />
+    </StackPane>
+    
+</VBox>
