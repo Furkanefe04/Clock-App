@@ -251,7 +251,11 @@ public class HelloController {
     @FXML
     private void stopTimer() {
         if (!runningChoronometre) {
+            if (isReset) {
+                return;
+            }
             showToastMessage("Zaten kronometre çalışmıyor");
+            return;
         }
         if (timeline != null) {
             timeline.stop();
@@ -266,6 +270,7 @@ public class HelloController {
             showToastMessage("Zaten resetlendi");
             return;
         }
+        isReset = true;
         stopTimer();
         clearTur();
         turSayisi = 0;
@@ -278,7 +283,6 @@ public class HelloController {
         animateLabel(timeLabelMinute, 2, String.format("%02d", 0));
         animateLabel(timeLabelSecond, 3, String.format("%02d", 0));
         animateLabel(timeLabelMS, 4, String.format("%02d", 0));
-        isReset = true;
         startChoronometre.setText("Başlat");
     }
 
@@ -328,18 +332,6 @@ public class HelloController {
         writer.close();
         showToastMessage("Veri Dosyalara kaydedildi");
         alreadySaved = true;
-    }
-
-    @FXML
-    private void hideChoronometre(ActionEvent event) {
-        choronometrescreen.setVisible(false);
-        clockscreen.setVisible(true);
-    }
-
-    @FXML
-    private void hideClock(ActionEvent event) {
-        choronometrescreen.setVisible(true);
-        clockscreen.setVisible(false);
     }
 
     @FXML
